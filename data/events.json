@@ -89,7 +89,7 @@
   "calendar": "The AI Collective",
   "calendar_id": "cal-E74MDlDKBaeAwXK",
   "cover": "https://images.lumacdn.com/uploads/sg/a098549a-b988-4388-8649-9a20c5bf6793.png",
-  "guests": 154,
+  "guests": 155,
   "vendors": [
    "OpenAI"
   ],
@@ -268,6 +268,32 @@
   "last_seen": "2026-09-05"
  },
  {
+  "id": "manual-aitinkerers-agents-hack-2026",
+  "name": "Agents, Everywhere: Global Hackathon (AI Tinkerers SG x OpenAI)",
+  "url": "https://singapore.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+  "start": "2026-09-12T02:00:00.000Z",
+  "end": "2026-09-12T11:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "Singapore (location shared upon acceptance)",
+  "hosts": [
+   "AI Tinkerers Singapore",
+   "OpenAI"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [
+   "OpenAI"
+  ],
+  "source": "manual",
+  "kind": "manual",
+  "note": "Global one-day buildathon with OpenAI as headline partner; Codex credit prizes. Application required.",
+  "first_seen": "2026-09-05",
+  "last_seen": "2026-09-05"
+ },
+ {
   "id": "evt-otTC08DwMhePXQX",
   "url": "https://lu.ma/wevny7a8",
   "name": "Edu2030 Vibe Hackathon",
@@ -285,7 +311,7 @@
   "cover": "https://images.lumacdn.com/uploads/f4/7c3e7438-218d-4b68-8ae6-d61954bc6c3f.png",
   "guests": 1,
   "vendors": [],
-  "source": "luma-sg-feed+cal:cal-9FiK2oO6xKiqLTd",
+  "source": "luma-sg-feed+cal:cal-9FiK2oO6xKiqLTd+cal:cal-9FiK2oO6xKiqLTd",
   "kind": "luma",
   "first_seen": "2026-09-05",
   "last_seen": "2026-09-05"
@@ -391,7 +417,7 @@
   "cover": "https://images.lumacdn.com/uploads/h8/08b4b204-4438-48e8-a96c-9b028b29d92f.png",
   "guests": 0,
   "vendors": [],
-  "source": "luma-sg-feed+cal:cal-0VIaDBPsW6guEgs",
+  "source": "luma-sg-feed+cal:cal-0VIaDBPsW6guEgs+cal:cal-0VIaDBPsW6guEgs",
   "kind": "luma",
   "first_seen": "2026-09-05",
   "last_seen": "2026-09-05"
@@ -445,7 +471,7 @@
    "OpenAI",
    "Miro"
   ],
-  "source": "cal:cal-lOnTgBGmZlLJ6oC",
+  "source": "cal:cal-lOnTgBGmZlLJ6oC+cal:cal-lOnTgBGmZlLJ6oC",
   "kind": "luma",
   "first_seen": "2026-09-05",
   "last_seen": "2026-09-05"
@@ -496,7 +522,7 @@
   "cover": "https://images.lumacdn.com/uploads/um/bd4843f6-6a86-4a07-9b50-6ebf84def689.png",
   "guests": 32,
   "vendors": [],
-  "source": "luma-sg-feed",
+  "source": "luma-sg-feed+cal:cal-eFke1vkoaubCHFc",
   "kind": "luma",
   "first_seen": "2026-09-05",
   "last_seen": "2026-09-05"
@@ -522,6 +548,32 @@
   "vendors": [],
   "source": "cal:The AI Capitol / OpenBuilder",
   "kind": "luma",
+  "first_seen": "2026-09-05",
+  "last_seen": "2026-09-05"
+ },
+ {
+  "id": "manual-gic-codetoimpact-2026",
+  "name": "#CODETOIMPACT Hackathon 2026 (GIC x Anthropic)",
+  "url": "https://gic.careers/events/codetoimpact-hackathon-2026/",
+  "start": "2026-09-18T00:30:00.000Z",
+  "end": "2026-09-18T14:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "GIC Singapore Office, Capital Tower, 168 Robinson Road",
+  "hosts": [
+   "GIC",
+   "Anthropic"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [
+   "Anthropic"
+  ],
+  "source": "manual",
+  "kind": "manual",
+  "note": "One-day AI hackathon for undergraduates, in collaboration with Anthropic. Problem statement released online Sep 17 evening.",
   "first_seen": "2026-09-05",
   "last_seen": "2026-09-05"
  },
@@ -772,6 +824,29 @@
   ],
   "source": "cal:The AI Capitol / OpenBuilder",
   "kind": "luma",
+  "first_seen": "2026-09-05",
+  "last_seen": "2026-09-05"
+ },
+ {
+  "id": "manual-oasec-2026",
+  "name": "OASec 2026: AI Safety & Security Conference",
+  "url": "https://oasec.org/",
+  "start": "2026-09-28T01:00:00.000Z",
+  "end": "2026-09-28T10:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "PIXEL @ one-north, 10 Central Exchange Green",
+  "hosts": [
+   "OASec"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [],
+  "source": "manual",
+  "kind": "manual",
+  "note": "Technical talks on AI safety/security; complimentary but registration closed Sep 4 (subject to capacity).",
   "first_seen": "2026-09-05",
   "last_seen": "2026-09-05"
  },
