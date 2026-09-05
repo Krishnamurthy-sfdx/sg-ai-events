@@ -237,7 +237,12 @@ def main():
         u = (e.get("url") or "").rstrip("/").lower()
         for k, v in credits_map.items():
             if u == k.rstrip("/").lower() or u.endswith("/" + k.rstrip("/").lower()):
-                e["credits"] = v
+                if isinstance(v, dict):
+                    e["credits"] = v.get("text", "")
+                    if v.get("kind"):
+                        e["credits_kind"] = v["kind"]
+                else:
+                    e["credits"] = v
 
     # 6) prune only events whose date has passed
     final = []
