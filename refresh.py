@@ -29,6 +29,8 @@ PRUNE_BEFORE = NOW - timedelta(hours=12)
 
 # AI-dedicated calendars: keep ALL their events (SG physical or virtual)
 TRUSTED_CALENDARS = {
+    "cal-ERmmBH1GOCSMkgM": "Codex Community Singapore",
+    "cal-63UOFcweB97l2gc": "Codex Community Events",
     "cal-Dkjza6RmAxAYMWj": "Claude SG Community",
     "cal-TOpA5LAFfuDeFpu": "Claude Community Events",
     "cal-E74MDlDKBaeAwXK": "The AI Collective",
@@ -59,7 +61,7 @@ WATCH_CALENDARS = [
     "cal-m6wm8HV54lYoRE3",  # Singapore Hardware Meetup
 ]
 
-AI_KW = [" ai", "a.i.", "artificial intelligence", "llm", "agentic", "agent", "openai",
+AI_KW = [" ai", "a.i.", "artificial intelligence", "llm", "agentic", "agent", "openai", "astra",
          "chatgpt", "codex", "anthropic", "claude", "xai", "grok", "cursor", "gpt",
          "gemini", "deepmind", "machine learning", "genai", "gen ai", "generative ai",
          "copilot", "mistral", "llama", "qwen", "deepseek", "hugging face", "langchain",
@@ -201,7 +203,20 @@ def main():
         if eid not in kept:
             kept[eid] = prev
 
-    # 5) manual curated entries (never overwritten)
+    # 4b) drop harvested events that duplicate a manual curated entry
+    #     (same start date + same name prefix, e.g. official non-Luma page)
+    import re as _re
+    def _sig(name):
+        return _re.sub(r"[^a-z0-9]", "", (name or "").lower())[:12]
+    man_sigs = {(_sig(m.get("name")), (m.get("start") or "")[:10])
+                for m in load_json(DATA / "manual-events.json", [])}
+    for eid in [eid for eid, e in kept.items()
+                if (_sig(e.get("name")), (e.get("start") or "")[:10]) in man_sigs]:
+        del kept[eid]
+
+    # 5) manual curated entries (never overwritten); skip if the same URL
+    #    was already harvested from Luma (avoid duplicates)
+    kept_urls = {(e.get("url") or "").rstrip("/").lower() for e in kept.values()}
     for m in load_json(DATA / "manual-events.json", []):
         m = dict(m)
         m.setdefault("kind", "manual")
@@ -209,10 +224,20 @@ def main():
         m.setdefault("hosts", [])
         m.setdefault("virtual", False)
         m.setdefault("sg", True)
+        if (m.get("url") or "").rstrip("/").lower() in kept_urls:
+            continue
         prev = old_events.get(m["id"])
         m["first_seen"] = (prev or {}).get("first_seen", today)
         m["last_seen"] = today
         kept[m["id"]] = m
+
+    # 5b) credits overrides: verified credit offers per event URL (data/credits.json)
+    credits_map = load_json(DATA / "credits.json", {})
+    for e in kept.values():
+        u = (e.get("url") or "").rstrip("/").lower()
+        for k, v in credits_map.items():
+            if u == k.rstrip("/").lower() or u.endswith("/" + k.rstrip("/").lower()):
+                e["credits"] = v
 
     # 6) prune only events whose date has passed
     final = []

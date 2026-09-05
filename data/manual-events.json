@@ -190,7 +190,8 @@
   ],
   "source": "manual",
   "kind": "manual",
-  "note": "Global one-day buildathon with OpenAI as headline partner; Codex credit prizes. Application required."
+  "note": "Global one-day buildathon with OpenAI as headline partner. Application required. Official registration page; Luma mirror: https://lu.ma/b4fdnzoc",
+  "credits": "Codex credit prizes (OpenAI-sponsored)"
  },
  {
   "id": "manual-oasec-2026",
@@ -212,5 +213,156 @@
   "source": "manual",
   "kind": "manual",
   "note": "Technical talks on AI safety/security; complimentary but registration closed Sep 4 (subject to capacity)."
+ },
+ {
+  "id": "manual-aicon-2026",
+  "name": "AICON 2026 - World's #1 AI Consumer Show",
+  "url": "https://luma.com/ong7gwwk",
+  "start": "2026-10-08T01:00:00.000Z",
+  "end": "2026-10-09T13:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "*SCAPE, Singapore",
+  "hosts": [
+   "AICON 2026"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [],
+  "source": "manual",
+  "kind": "manual",
+  "note": "Two-day AI consumer show: showcases, live demos, creator experiences, startup innovations."
+ },
+ {
+  "id": "manual-aim-asean-2026",
+  "name": "AIM ASEAN Singapore 2026: Flagship Forum",
+  "url": "https://luma.com/azljrdvu",
+  "start": "2026-09-15T05:30:00.000Z",
+  "end": "2026-09-15T10:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "Singapore Polytechnic Convention Centre",
+  "hosts": [
+   "BlackStorm Group",
+   "Project Asia Data"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [],
+  "source": "manual",
+  "kind": "manual",
+  "note": "~800 business owners/SME leaders; practical AI adoption. ASEAN Foundation initiative supported by Google + ADB."
+ },
+ {
+  "id": "manual-0g-devday-2026",
+  "name": "0G Dev Day: ZERO TO INFINITY",
+  "url": "https://luma.com/0g-devday-2026",
+  "start": "2026-10-05T01:30:00.000Z",
+  "end": "2026-10-05T09:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "National Gallery Singapore",
+  "hosts": [
+   "0G Foundation"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [],
+  "source": "manual",
+  "kind": "manual",
+  "note": "Keynote, live AI app demos, ecosystem showcase, panels on decentralized AI infrastructure."
+ },
+ {
+  "id": "manual-oracle-apex-ai-2026",
+  "name": "Oracle APEX AI Roadshow 2026, ASEAN Edition (Singapore)",
+  "url": "https://luma.com/pkzmqpgb",
+  "start": "2026-10-02T01:00:00.000Z",
+  "end": "2026-10-02T08:30:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "Oracle Singapore @ Fusionopolis",
+  "hosts": [
+   "APAC Oracle User Groups Community"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [
+   "Oracle"
+  ],
+  "source": "manual",
+  "kind": "manual",
+  "note": "Full-day roadshow: generative development, AI agents, AI interactive reports."
+ },
+ {
+  "id": "manual-ai-salon-sep-2026",
+  "name": "AI Salon Singapore x SGInnovate Tech Talk (September 2026)",
+  "url": "https://luma.com/AI-Salon-Singapore-September-2026",
+  "start": "2026-09-25T10:00:00.000Z",
+  "end": "2026-09-25T13:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "Singapore (location on registration)",
+  "hosts": [
+   "AI Salon",
+   "SGInnovate"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [],
+  "source": "manual",
+  "kind": "manual",
+  "note": "Where is AI value being created, what investors are betting on, defensibility."
+ },
+ {
+  "id": "manual-ai-open-models-oct-2026",
+  "name": "Oct Meetup - AI Open Models (Technology + Agentic AI + Databases)",
+  "url": "https://luma.com/oldmvewn",
+  "start": "2026-10-05T10:00:00.000Z",
+  "end": "2026-10-05T12:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "Singapore (location on registration)",
+  "hosts": [
+   "AINight"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [],
+  "source": "manual",
+  "kind": "manual",
+  "note": "Practical AI agents for search/retrieval over rich content. Date tentative per host."
+ },
+ {
+  "id": "manual-stack-conf-2026",
+  "name": "STACK Conference 2026 (GovTech)",
+  "url": "https://www.tech.gov.sg/events/stack-conference-2026/",
+  "start": "2026-11-04T01:00:00.000Z",
+  "end": "2026-11-05T10:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "Singapore",
+  "hosts": [
+   "GovTech Singapore"
+  ],
+  "calendar": "",
+  "cover": null,
+  "guests": null,
+  "vendors": [],
+  "source": "manual",
+  "kind": "manual",
+  "note": "GovTech flagship developer conference, Nov 4-5; strong AI/agentic tracks."
  }
 ]

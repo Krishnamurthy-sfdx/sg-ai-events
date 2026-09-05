@@ -3,170 +3,209 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SG AI Events - Singapore AI events tracker</title>
+<title>SG AI Events - Singapore AI events, tracked daily</title>
 <style>
 :root{
-  --bg:#0b0e14; --panel:#121724; --panel2:#171e2e; --line:#232c40;
-  --text:#e8ecf4; --muted:#8b95ab; --accent:#5b8cff; --green:#34d399; --amber:#fbbf24;
+  --bg:#f4f5f7; --card:#ffffff; --line:rgba(15,23,42,.08); --line2:rgba(15,23,42,.14);
+  --text:#111827; --muted:#6b7280; --faint:#9ca3af;
+  --accent:#f04e5f; --accent-soft:#fef0f1;
+  --green:#16a34a; --green-soft:#eafaf0; --green-line:#bbe8cb;
+  --blue:#2563eb; --blue-soft:#eff4ff; --blue-line:#c9dbff;
+  --amber:#b45309; --amber-soft:#fdf3e3; --amber-line:#f0dcb4;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.45}
-a{color:var(--accent);text-decoration:none}
-.wrap{max-width:1200px;margin:0 auto;padding:0 16px 60px}
-header.top{position:sticky;top:0;z-index:20;background:rgba(11,14,20,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header.top .wrap{padding-top:14px;padding-bottom:12px}
-h1{font-size:22px;letter-spacing:.2px}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;font-size:15px}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px 80px}
+
+/* header */
+header.top{position:sticky;top:0;z-index:30;background:rgba(244,245,247,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-top:16px;padding-bottom:14px}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h1{font-size:21px;font-weight:700;letter-spacing:-.02em}
 h1 .dot{color:var(--accent)}
-.meta{color:var(--muted);font-size:12.5px;margin-top:3px}
+.meta{color:var(--muted);font-size:12.5px}
 .controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
-.chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;user-select:none}
-.chip:hover{border-color:var(--accent);color:var(--text)}
-.chip.on{background:var(--accent);border-color:var(--accent);color:#0b0e14;font-weight:600}
-.chip.von{background:#2d3a5f;border-color:#42538a;color:#cfe0ff;font-weight:600}
-#search{flex:1;min-width:160px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:8px 12px;font-size:14px}
+.chip{border:1px solid var(--line2);background:var(--card);color:var(--muted);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:500;cursor:pointer;user-select:none;transition:all .12s}
+.chip:hover{border-color:var(--faint);color:var(--text)}
+.chip.on{background:var(--text);border-color:var(--text);color:#fff}
+.chip.on .n{color:rgba(255,255,255,.65)}
+.chip .n{opacity:.55;font-weight:400;margin-left:3px}
+#search{flex:1;min-width:170px;background:var(--card);border:1px solid var(--line2);border-radius:999px;color:var(--text);padding:7px 14px;font-size:13.5px}
 #search:focus{outline:none;border-color:var(--accent)}
+#search::placeholder{color:var(--faint)}
 .vendors{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.grid{grid-template-columns:1fr}}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;position:relative;transition:border-color .15s}
-.card:hover{border-color:#33405e}
-.card.registered{border-color:var(--green);box-shadow:0 0 0 1px var(--green) inset}
-.dateline{display:flex;align-items:center;gap:10px}
-.datebox{background:var(--panel2);border:1px solid var(--line);border-radius:10px;text-align:center;min-width:54px;padding:6px 4px}
-.datebox .d{font-size:20px;font-weight:700}
-.datebox .m{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.when{font-size:12.5px;color:var(--muted)}
-.badges{display:flex;flex-wrap:wrap;gap:5px}
-.badge{font-size:11px;border-radius:6px;padding:2px 7px;border:1px solid var(--line);color:var(--muted);background:var(--panel2)}
-.badge.virt{color:#a5c4ff;border-color:#33507e;background:#14213c}
-.badge.new{color:#0b0e14;background:var(--amber);border-color:var(--amber);font-weight:700}
-.badge.reg{color:#0b0e14;background:var(--green);border-color:var(--green);font-weight:700}
-.badge.src{color:#7d86a0}
-.name{font-size:15.5px;font-weight:650;line-height:1.35}
-.name a{color:var(--text)}
+.vchip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;user-select:none}
+.vchip:hover{border-color:var(--faint);color:var(--text)}
+.vchip.on{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue);font-weight:600}
+
+/* month sections */
+.month{margin-top:30px}
+.month h2{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.month h2::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* event cards - Luma style */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;position:relative;transition:box-shadow .15s,transform .15s}
+.card:hover{box-shadow:0 6px 24px rgba(15,23,42,.09);transform:translateY(-1px)}
+.card.registered{border-color:var(--green-line);box-shadow:0 0 0 1.5px var(--green)}
+.cover{display:block;position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#e8ecf3,#dfe5ee);overflow:hidden}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.cover .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:34px;color:#94a3b8}
+.newtag{position:absolute;top:10px;left:10px;background:var(--text);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;border-radius:6px;padding:3px 8px}
+.regtag{position:absolute;top:10px;right:10px;background:var(--green);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;border-radius:6px;padding:3px 8px}
+.virttag{position:absolute;bottom:10px;left:10px;background:rgba(17,24,39,.72);color:#fff;font-size:10.5px;font-weight:600;border-radius:6px;padding:3px 8px;backdrop-filter:blur(4px)}
+.body{padding:14px 16px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.when{font-size:12.5px;font-weight:600;color:var(--accent);letter-spacing:.02em}
+.name{font-size:15.5px;font-weight:650;line-height:1.35;letter-spacing:-.01em}
 .name a:hover{color:var(--accent)}
-.where{font-size:13px;color:var(--muted)}
-.host{font-size:12.5px;color:var(--muted)}
+.host,.where{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:baseline;min-width:0}
+.host span,.where span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.credit{display:inline-flex;align-items:center;gap:5px;background:var(--green-soft);border:1px solid var(--green-line);color:var(--green);font-size:12px;font-weight:600;border-radius:8px;padding:4px 9px;line-height:1.3}
+.note{font-size:12px;color:var(--faint);line-height:1.4}
 .vtags{display:flex;flex-wrap:wrap;gap:5px}
-.vtag{font-size:11px;border-radius:6px;padding:2px 8px;background:#1d2a4a;color:#9db9ff;border:1px solid #2c3d66}
-.actions{display:flex;gap:8px;margin-top:auto;padding-top:8px}
-.btn{flex:1;text-align:center;font-size:13px;border-radius:8px;padding:8px 10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);cursor:pointer}
-.btn:hover{border-color:var(--accent)}
-.btn.rsvp{background:var(--accent);border-color:var(--accent);color:#0b0e14;font-weight:650}
-.btn.regbtn.on{background:var(--green);border-color:var(--green);color:#0b0e14;font-weight:650}
-.note{font-size:12px;color:var(--muted);font-style:italic}
-footer{margin-top:36px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12.5px;display:flex;flex-direction:column;gap:6px}
-.empty{margin-top:40px;text-align:center;color:var(--muted)}
-#countline{font-size:12.5px;color:var(--muted);margin-top:10px}
+.vtag{font-size:11px;font-weight:500;border-radius:6px;padding:2px 8px;background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-line)}
+.actions{display:flex;gap:8px;margin-top:auto;padding:10px 16px 14px}
+.btn{flex:1;text-align:center;font-size:13px;font-weight:600;border-radius:10px;padding:8px 10px;border:1px solid var(--line2);background:var(--card);color:var(--text);cursor:pointer;transition:all .12s}
+.btn:hover{border-color:var(--faint);background:#fafafa}
+.btn.rsvp{background:var(--text);border-color:var(--text);color:#fff}
+.btn.rsvp:hover{background:#000}
+.btn.regbtn.on{background:var(--green);border-color:var(--green);color:#fff}
+
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:12.5px;display:flex;flex-direction:column;gap:5px}
+.empty{margin-top:50px;text-align:center;color:var(--faint);font-size:14px}
+#countline{font-size:12.5px;color:var(--faint);margin-top:10px}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <h1>SG AI Events<span class="dot">.</span></h1>
-  <div class="meta" id="meta">Loading events...</div>
-  <div class="controls">
+  <div class="brand"><h1>SG AI Events</h1><div class="meta" id="meta">Loading events...</div></div>
+  <div class="controls" id="filters">
     <div class="chip on" data-f="all">All</div>
-    <div class="chip" data-f="sg">📍 In Singapore</div>
-    <div class="chip" data-f="virtual">🌐 Virtual</div>
-    <div class="chip" data-f="registered">✅ Registered</div>
+    <div class="chip" data-f="sg">In Singapore</div>
+    <div class="chip" data-f="virtual">Virtual</div>
+    <div class="chip" data-f="credits">🎁 Credits</div>
+    <div class="chip" data-f="registered">✓ Registered</div>
     <input id="search" type="search" placeholder="Search events, hosts, venues...">
   </div>
   <div class="vendors" id="vendors"></div>
   <div id="countline"></div>
 </div></header>
 <div class="wrap">
-  <div class="grid" id="grid"></div>
+  <div id="sections"></div>
   <div class="empty" id="empty" style="display:none">No events match these filters.</div>
   <footer>
-    <div>Sources: Luma (lu.ma) Singapore feed + AI community calendars + curated additions. Refreshed daily - new events are added, and nothing is removed until its date has passed.</div>
-    <div>Your "Registered" marks are stored in this browser only (localStorage) - they are not synced across devices or browsers.</div>
-    <div>Always confirm details on the event's own page before heading out.</div>
+    <div>Updated daily around 7 AM SGT from Luma (Singapore discover feed + watched AI calendars) and curated sources. New events are added as they appear; nothing is removed until 12 hours after the event ends.</div>
+    <div>"Mark registered" is saved in this browser only (localStorage) - it won't sync between your phone and laptop.</div>
+    <div>Credits chips are verified against the event page when marked; see the event page for exact terms.</div>
   </footer>
 </div>
 <script>
-const LS_KEY='sg-ai-events-registered-v1';
-let EVENTS=[], META={}, FILTER='all', VENDOR=null, QUERY='';
-const reg=()=>{try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){return{}}};
-const saveReg=r=>localStorage.setItem(LS_KEY,JSON.stringify(r));
-const fmtDay=s=>{const d=new Date(s);return d.toLocaleDateString('en-SG',{timeZone:'Asia/Singapore',weekday:'short',day:'numeric',month:'short'})};
-const fmtTime=(s,e)=>{const o={timeZone:'Asia/Singapore',hour:'numeric',minute:'2-digit',hour12:true};
-  const a=new Date(s).toLocaleTimeString('en-SG',o);
-  if(!e)return a;const b=new Date(e).toLocaleTimeString('en-SG',o);return a+' - '+b;};
-const isNew=e=>{if(!e.first_seen)return false;const f=new Date(e.first_seen+'T00:00:00Z');return (Date.now()-f.getTime())<3*864e5};
-const esc=s=>(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=s=>document.querySelector(s);
+let EVENTS=[],META={},state={f:'all',q:'',vendors:new Set()};
+const REG_KEY='sgai-registered-v1';
+const reg=new Set(JSON.parse(localStorage.getItem(REG_KEY)||'[]'));
+const saveReg=()=>localStorage.setItem(REG_KEY,JSON.stringify([...reg]));
 
-function match(e){
-  const R=reg();
-  if(FILTER==='sg'&&(e.virtual||!e.sg))return false;
-  if(FILTER==='virtual'&&!e.virtual)return false;
-  if(FILTER==='registered'&&!R[e.id])return false;
-  if(VENDOR&&!(e.vendors||[]).includes(VENDOR))return false;
-  if(QUERY){
-    const h=(e.name+' '+(e.hosts||[]).join(' ')+' '+(e.calendar||'')+' '+(e.venue||'')).toLowerCase();
-    if(!h.includes(QUERY))return false;
-  }
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function dparse(s){try{return new Date(s)}catch(e){return null}}
+function fmtWhen(e){
+  const d=dparse(e.start); if(!d) return '';
+  const opts={timeZone:e.tz||'Asia/Singapore'};
+  const wd=d.toLocaleDateString('en-US',{...opts,weekday:'short'});
+  const mon=d.toLocaleDateString('en-US',{...opts,month:'short'});
+  const day=d.toLocaleDateString('en-US',{...opts,day:'numeric'});
+  const t1=d.toLocaleTimeString('en-US',{...opts,hour:'numeric',minute:'2-digit',hour12:true});
+  let t2='';
+  const de=dparse(e.end);
+  if(de) t2=de.toLocaleTimeString('en-US',{...opts,hour:'numeric',minute:'2-digit',hour12:true});
+  const sameDay=de&&d.toLocaleDateString('en-US',opts)===de.toLocaleDateString('en-US',opts);
+  return `${wd}, ${mon} ${day} · ${t1}${t2?(sameDay?' – '+t2:' → '+de.toLocaleDateString('en-US',{...opts,month:'short',day:'numeric'})+' '+t2):''}`;
+}
+function monthKey(e){const d=dparse(e.start);return d?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'):'9999-99'}
+function monthLabel(k){const[y,m]=k.split('-');return MONTHS[+m-1]+' '+y}
+function isNew(e){if(!e.first_seen)return false;const fs=new Date(e.first_seen+'T00:00:00Z');return (Date.now()-fs.getTime())<3*864e5}
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function matches(e){
+  if(state.f==='sg'&&!(e.sg&&!e.virtual))return false;
+  if(state.f==='virtual'&&!e.virtual)return false;
+  if(state.f==='registered'&&!reg.has(e.id))return false;
+  if(state.f==='credits'&&!e.credits)return false;
+  if(state.vendors.size&&!(e.vendors||[]).some(v=>state.vendors.has(v)))return false;
+  if(state.q){const h=(e.name+' '+(e.hosts||[]).join(' ')+' '+(e.venue||'')+' '+(e.calendar||'')).toLowerCase();if(!h.includes(state.q))return false;}
   return true;
 }
-function render(){
-  const g=document.getElementById('grid'), R=reg();
-  const shown=EVENTS.filter(match);
-  document.getElementById('empty').style.display=shown.length?'none':'block';
-  document.getElementById('countline').textContent=shown.length+' of '+EVENTS.length+' events shown';
-  g.innerHTML=shown.map(e=>{
-    const d=new Date(e.start);
-    const day=d.toLocaleDateString('en-SG',{timeZone:'Asia/Singapore',day:'numeric'});
-    const mon=d.toLocaleDateString('en-SG',{timeZone:'Asia/Singapore',month:'short'});
-    const yr=d.toLocaleDateString('en-SG',{timeZone:'Asia/Singapore',year:'numeric'});
-    const isR=!!R[e.id];
-    return `<div class="card ${isR?'registered':''}">
-      <div class="dateline">
-        <div class="datebox"><div class="d">${day}</div><div class="m">${mon} ${yr}</div></div>
-        <div>
-          <div class="when">${fmtDay(e.start)} · ${fmtTime(e.start,e.end)} SGT</div>
-          <div class="badges">
-            ${e.virtual?'<span class="badge virt">🌐 Virtual</span>':'<span class="badge">📍 Singapore</span>'}
-            ${isNew(e)?'<span class="badge new">NEW</span>':''}
-            ${isR?'<span class="badge reg">REGISTERED</span>':''}
-            ${e.kind==='manual'?'<span class="badge src">curated</span>':''}
-          </div>
-        </div>
-      </div>
+
+function card(e){
+  const isReg=reg.has(e.id);
+  const cover=e.cover
+    ?`<img src="${esc(e.cover)}" loading="lazy" alt="" onerror="this.remove()">`
+    :`<div class="fallback">🗓️</div>`;
+  return `<div class="card${isReg?' registered':''}" data-id="${esc(e.id)}">
+    <a class="cover" href="${esc(e.url)}" target="_blank" rel="noopener">${cover}
+      ${isNew(e)?'<span class="newtag">NEW</span>':''}
+      ${isReg?'<span class="regtag">REGISTERED</span>':''}
+      ${e.virtual?'<span class="virttag">🌐 Virtual</span>':''}
+    </a>
+    <div class="body">
+      <div class="when">${esc(fmtWhen(e))}</div>
       <div class="name"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.name)}</a></div>
-      <div class="where">${esc(e.venue||(e.virtual?'Online':''))}</div>
-      ${(e.hosts&&e.hosts.length)||e.calendar?`<div class="host">by ${esc((e.hosts&&e.hosts.filter(Boolean).join(', '))||e.calendar||'')}</div>`:''}
-      ${e.note?`<div class="note">${esc(e.note)}</div>`:''}
+      ${(e.hosts&&e.hosts.length)?`<div class="host">By <span>${esc(e.hosts.join(', '))}</span></div>`:''}
+      ${e.venue?`<div class="where">📍 <span>${esc(e.venue)}</span></div>`:''}
+      ${e.credits?`<div><span class="credit">🎁 ${esc(e.credits)}</span></div>`:''}
       ${(e.vendors&&e.vendors.length)?`<div class="vtags">${e.vendors.map(v=>`<span class="vtag">${esc(v)}</span>`).join('')}</div>`:''}
-      <div class="actions">
-        <a class="btn rsvp" href="${esc(e.url)}" target="_blank" rel="noopener">View & RSVP ↗</a>
-        <button class="btn regbtn ${isR?'on':''}" onclick="toggleReg('${e.id}')">${isR?'✓ Registered':'Mark registered'}</button>
-      </div>
-    </div>`;
-  }).join('');
+      ${e.note?`<div class="note">${esc(e.note)}</div>`:''}
+    </div>
+    <div class="actions">
+      <a class="btn rsvp" href="${esc(e.url)}" target="_blank" rel="noopener">View event →</a>
+      <button class="btn regbtn${isReg?' on':''}" onclick="toggleReg('${esc(e.id)}')">${isReg?'✓ Registered':'Mark registered'}</button>
+    </div>
+  </div>`;
 }
-window.toggleReg=id=>{const R=reg();if(R[id])delete R[id];else R[id]=Date.now();saveReg(R);render();};
+window.toggleReg=id=>{
+  reg.has(id)?reg.delete(id):reg.add(id);saveReg();render();
+};
 
-document.querySelectorAll('.chip[data-f]').forEach(c=>c.addEventListener('click',()=>{
-  document.querySelectorAll('.chip[data-f]').forEach(x=>x.classList.remove('on'));
-  c.classList.add('on');FILTER=c.dataset.f;render();
-}));
-document.getElementById('search').addEventListener('input',e=>{QUERY=e.target.value.trim().toLowerCase();render();});
+function render(){
+  const list=EVENTS.filter(matches);
+  const secs=$('#sections');secs.innerHTML='';
+  const groups={};
+  list.forEach(e=>{(groups[monthKey(e)]=groups[monthKey(e)]||[]).push(e)});
+  Object.keys(groups).sort().forEach(k=>{
+    const sec=document.createElement('div');sec.className='month';
+    sec.innerHTML=`<h2>${monthLabel(k)}</h2><div class="grid">${groups[k].map(card).join('')}</div>`;
+    secs.appendChild(sec);
+  });
+  $('#empty').style.display=list.length?'none':'block';
+  // counts on chips
+  const cnt={all:EVENTS.length,sg:EVENTS.filter(e=>e.sg&&!e.virtual).length,virtual:EVENTS.filter(e=>e.virtual).length,credits:EVENTS.filter(e=>e.credits).length,registered:EVENTS.filter(e=>reg.has(e.id)).length};
+  document.querySelectorAll('#filters .chip').forEach(c=>{const f=c.dataset.f;const base=c.textContent.replace(/\s*\d+$/,'');c.innerHTML=esc(base)+`<span class="n">${cnt[f]}</span>`});
+  $('#countline').textContent=`Showing ${list.length} of ${EVENTS.length} events`;
+}
 
-Promise.all([fetch('data/events.json').then(r=>r.json()),fetch('data/meta.json').then(r=>r.json()).catch(()=>({}))])
-.then(([ev,meta])=>{
+async function boot(){
+  const [ev,meta]=await Promise.all([
+    fetch('data/events.json?'+Date.now()).then(r=>r.json()),
+    fetch('data/meta.json?'+Date.now()).then(r=>r.json()).catch(()=>({}))
+  ]);
   EVENTS=ev;META=meta;
-  const when=meta.refreshed_at?new Date(meta.refreshed_at).toLocaleString('en-SG',{timeZone:'Asia/Singapore',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',hour12:true}):'';
-  document.getElementById('meta').textContent=`${ev.length} upcoming AI events - ${meta.sg_count??''} in Singapore, ${meta.virtual_count??''} virtual · refreshed ${when} SGT`;
-  const vs=[...new Set(ev.flatMap(e=>e.vendors||[]))].sort();
-  const bar=document.getElementById('vendors');
-  bar.innerHTML=vs.map(v=>`<div class="chip vchip" data-v="${esc(v)}">${esc(v)}</div>`).join('');
-  bar.querySelectorAll('.vchip').forEach(c=>c.addEventListener('click',()=>{
-    if(VENDOR===c.dataset.v){VENDOR=null;c.classList.remove('von');}
-    else{VENDOR=c.dataset.v;bar.querySelectorAll('.vchip').forEach(x=>x.classList.remove('von'));c.classList.add('von');}
-    render();
-  }));
+  const when=META.refreshed_at?new Date(META.refreshed_at).toLocaleString('en-SG',{timeZone:'Asia/Singapore',dateStyle:'medium',timeStyle:'short'}):'';
+  $('#meta').textContent=`${EVENTS.length} events · Singapore + virtual · refreshed ${when} SGT`;
+  // vendor chips
+  const vs=new Set();EVENTS.forEach(e=>(e.vendors||[]).forEach(v=>vs.add(v)));
+  $('#vendors').innerHTML=[...vs].sort().map(v=>`<span class="vchip" data-v="${esc(v)}">${esc(v)}</span>`).join('');
+  document.querySelectorAll('.vchip').forEach(c=>c.onclick=()=>{const v=c.dataset.v;state.vendors.has(v)?state.vendors.delete(v):state.vendors.add(v);c.classList.toggle('on');render()});
+  document.querySelectorAll('#filters .chip').forEach(c=>c.onclick=()=>{
+    document.querySelectorAll('#filters .chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');state.f=c.dataset.f;render();
+  });
+  $('#search').oninput=e=>{state.q=e.target.value.trim().toLowerCase();render()};
   render();
-}).catch(err=>{document.getElementById('meta').textContent='Failed to load events: '+err});
+}
+boot().catch(e=>{$('#meta').textContent='Failed to load events: '+e});
 </script>
 </body>
 </html>
