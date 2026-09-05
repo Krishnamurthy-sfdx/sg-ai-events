@@ -120,7 +120,8 @@
   "source": "cal:The AI Collective",
   "kind": "luma",
   "first_seen": "2026-09-05",
-  "last_seen": "2026-09-05"
+  "last_seen": "2026-09-05",
+  "credits": "Starbucks Buy-1-Free-1 voucher (stay to the end + complete check-in/check-out forms)"
  },
  {
   "id": "evt-tsho7FVPCJFAbAm",
@@ -241,7 +242,8 @@
   "source": "cal:The AI Capitol / OpenBuilder",
   "kind": "luma",
   "first_seen": "2026-09-05",
-  "last_seen": "2026-09-05"
+  "last_seen": "2026-09-05",
+  "credits": "Free Kimi vouchers (details TBA on page)"
  },
  {
   "id": "evt-rCKzCOOebK3AlMf",
@@ -290,7 +292,7 @@
   "source": "manual",
   "kind": "manual",
   "note": "Global one-day buildathon with OpenAI as headline partner. Application required. Official registration page; Luma mirror: https://lu.ma/b4fdnzoc",
-  "credits": "Codex credit prizes (OpenAI-sponsored)",
+  "credits": "Winning teams: $1000/$500/$250 Codex credits (1st/2nd/3rd) + 3 months ChatGPT Pro; builder credits/offers for participants",
   "first_seen": "2026-09-05",
   "last_seen": "2026-09-05"
  },
@@ -474,7 +476,8 @@
   "source": "luma-sg-feed+cal:cal-0VIaDBPsW6guEgs+cal:cal-0VIaDBPsW6guEgs",
   "kind": "luma",
   "first_seen": "2026-09-05",
-  "last_seen": "2026-09-05"
+  "last_seen": "2026-09-05",
+  "credits": "Free AI credits for all hackathon participants + registration gifts; SGD 10,000 top cash prize"
  },
  {
   "id": "evt-BVYjZ2Var4kRnbP",
@@ -500,7 +503,8 @@
   "source": "cal:The AI Capitol / OpenBuilder",
   "kind": "luma",
   "first_seen": "2026-09-05",
-  "last_seen": "2026-09-05"
+  "last_seen": "2026-09-05",
+  "credits": "Platform access + compute credits provided by Bitdeer AI for the workshop"
  },
  {
   "id": "evt-CXEnXQMqj1Meuty",
@@ -598,7 +602,7 @@
   "calendar": "Personal",
   "calendar_id": "cal-7xEpna9688PSFwd",
   "cover": "https://images.lumacdn.com/uploads/qb/317d7c81-d315-43c6-bc66-b4335b3e1977.png",
-  "guests": 84,
+  "guests": 86,
   "vendors": [],
   "source": "cal:The AI Capitol / OpenBuilder",
   "kind": "luma",
@@ -629,7 +633,8 @@
   "kind": "manual",
   "note": "One-day AI hackathon for undergraduates, in collaboration with Anthropic. Problem statement released online Sep 17 evening.",
   "first_seen": "2026-09-05",
-  "last_seen": "2026-09-05"
+  "last_seen": "2026-09-05",
+  "credits": "Prizes for winners (page says 'amazing prizes', no details given)"
  },
  {
   "id": "evt-CQ2R6Z2xD3gc4nP",
@@ -1077,7 +1082,8 @@
   "kind": "manual",
   "note": "Keynote, live AI app demos, ecosystem showcase, panels on decentralized AI infrastructure.",
   "first_seen": "2026-09-05",
-  "last_seen": "2026-09-05"
+  "last_seen": "2026-09-05",
+  "credits": "0G Passport stamps redeemable at swag shop for exclusives (0G Panda Labubus etc.)"
  },
  {
   "id": "manual-ai-open-models-oct-2026",
