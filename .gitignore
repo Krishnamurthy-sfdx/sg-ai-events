@@ -1,0 +1,5 @@
+.secrets/
+.vercel-token
+.gh-token
+__pycache__/
+.vercel

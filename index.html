@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SG AI Events - Singapore AI events tracker</title>
+<style>
+:root{
+  --bg:#0b0e14; --panel:#121724; --panel2:#171e2e; --line:#232c40;
+  --text:#e8ecf4; --muted:#8b95ab; --accent:#5b8cff; --green:#34d399; --amber:#fbbf24;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.45}
+a{color:var(--accent);text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px 60px}
+header.top{position:sticky;top:0;z-index:20;background:rgba(11,14,20,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-top:14px;padding-bottom:12px}
+h1{font-size:22px;letter-spacing:.2px}
+h1 .dot{color:var(--accent)}
+.meta{color:var(--muted);font-size:12.5px;margin-top:3px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;user-select:none}
+.chip:hover{border-color:var(--accent);color:var(--text)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#0b0e14;font-weight:600}
+.chip.von{background:#2d3a5f;border-color:#42538a;color:#cfe0ff;font-weight:600}
+#search{flex:1;min-width:160px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:8px 12px;font-size:14px}
+#search:focus{outline:none;border-color:var(--accent)}
+.vendors{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;position:relative;transition:border-color .15s}
+.card:hover{border-color:#33405e}
+.card.registered{border-color:var(--green);box-shadow:0 0 0 1px var(--green) inset}
+.dateline{display:flex;align-items:center;gap:10px}
+.datebox{background:var(--panel2);border:1px solid var(--line);border-radius:10px;text-align:center;min-width:54px;padding:6px 4px}
+.datebox .d{font-size:20px;font-weight:700}
+.datebox .m{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.when{font-size:12.5px;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:5px}
+.badge{font-size:11px;border-radius:6px;padding:2px 7px;border:1px solid var(--line);color:var(--muted);background:var(--panel2)}
+.badge.virt{color:#a5c4ff;border-color:#33507e;background:#14213c}
+.badge.new{color:#0b0e14;background:var(--amber);border-color:var(--amber);font-weight:700}
+.badge.reg{color:#0b0e14;background:var(--green);border-color:var(--green);font-weight:700}
+.badge.src{color:#7d86a0}
+.name{font-size:15.5px;font-weight:650;line-height:1.35}
+.name a{color:var(--text)}
+.name a:hover{color:var(--accent)}
+.where{font-size:13px;color:var(--muted)}
+.host{font-size:12.5px;color:var(--muted)}
+.vtags{display:flex;flex-wrap:wrap;gap:5px}
+.vtag{font-size:11px;border-radius:6px;padding:2px 8px;background:#1d2a4a;color:#9db9ff;border:1px solid #2c3d66}
+.actions{display:flex;gap:8px;margin-top:auto;padding-top:8px}
+.btn{flex:1;text-align:center;font-size:13px;border-radius:8px;padding:8px 10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.rsvp{background:var(--accent);border-color:var(--accent);color:#0b0e14;font-weight:650}
+.btn.regbtn.on{background:var(--green);border-color:var(--green);color:#0b0e14;font-weight:650}
+.note{font-size:12px;color:var(--muted);font-style:italic}
+footer{margin-top:36px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12.5px;display:flex;flex-direction:column;gap:6px}
+.empty{margin-top:40px;text-align:center;color:var(--muted)}
+#countline{font-size:12.5px;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>SG AI Events<span class="dot">.</span></h1>
+  <div class="meta" id="meta">Loading events...</div>
+  <div class="controls">
+    <div class="chip on" data-f="all">All</div>
+    <div class="chip" data-f="sg">📍 In Singapore</div>
+    <div class="chip" data-f="virtual">🌐 Virtual</div>
+    <div class="chip" data-f="registered">✅ Registered</div>
+    <input id="search" type="search" placeholder="Search events, hosts, venues...">
+  </div>
+  <div class="vendors" id="vendors"></div>
+  <div id="countline"></div>
+</div></header>
+<div class="wrap">
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">No events match these filters.</div>
+  <footer>
+    <div>Sources: Luma (lu.ma) Singapore feed + AI community calendars + curated additions. Refreshed daily - new events are added, and nothing is removed until its date has passed.</div>
+    <div>Your "Registered" marks are stored in this browser only (localStorage) - they are not synced across devices or browsers.</div>
+    <div>Always confirm details on the event's own page before heading out.</div>
+  </footer>
+</div>
+<script>
+const LS_KEY='sg-ai-events-registered-v1';
+let EVENTS=[], META={}, FILTER='all', VENDOR=null, QUERY='';
+const reg=()=>{try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){return{}}};
+const saveReg=r=>localStorage.setItem(LS_KEY,JSON.stringify(r));
+const fmtDay=s=>{const d=new Date(s);return d.toLocaleDateString('en-SG',{timeZone:'Asia/Singapore',weekday:'short',day:'numeric',month:'short'})};
+const fmtTime=(s,e)=>{const o={timeZone:'Asia/Singapore',hour:'numeric',minute:'2-digit',hour12:true};
+  const a=new Date(s).toLocaleTimeString('en-SG',o);
+  if(!e)return a;const b=new Date(e).toLocaleTimeString('en-SG',o);return a+' - '+b;};
+const isNew=e=>{if(!e.first_seen)return false;const f=new Date(e.first_seen+'T00:00:00Z');return (Date.now()-f.getTime())<3*864e5};
+const esc=s=>(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function match(e){
+  const R=reg();
+  if(FILTER==='sg'&&(e.virtual||!e.sg))return false;
+  if(FILTER==='virtual'&&!e.virtual)return false;
+  if(FILTER==='registered'&&!R[e.id])return false;
+  if(VENDOR&&!(e.vendors||[]).includes(VENDOR))return false;
+  if(QUERY){
+    const h=(e.name+' '+(e.hosts||[]).join(' ')+' '+(e.calendar||'')+' '+(e.venue||'')).toLowerCase();
+    if(!h.includes(QUERY))return false;
+  }
+  return true;
+}
+function render(){
+  const g=document.getElementById('grid'), R=reg();
+  const shown=EVENTS.filter(match);
+  document.getElementById('empty').style.display=shown.length?'none':'block';
+  document.getElementById('countline').textContent=shown.length+' of '+EVENTS.length+' events shown';
+  g.innerHTML=shown.map(e=>{
+    const d=new Date(e.start);
+    const day=d.toLocaleDateString('en-SG',{timeZone:'Asia/Singapore',day:'numeric'});
+    const mon=d.toLocaleDateString('en-SG',{timeZone:'Asia/Singapore',month:'short'});
+    const yr=d.toLocaleDateString('en-SG',{timeZone:'Asia/Singapore',year:'numeric'});
+    const isR=!!R[e.id];
+    return `<div class="card ${isR?'registered':''}">
+      <div class="dateline">
+        <div class="datebox"><div class="d">${day}</div><div class="m">${mon} ${yr}</div></div>
+        <div>
+          <div class="when">${fmtDay(e.start)} · ${fmtTime(e.start,e.end)} SGT</div>
+          <div class="badges">
+            ${e.virtual?'<span class="badge virt">🌐 Virtual</span>':'<span class="badge">📍 Singapore</span>'}
+            ${isNew(e)?'<span class="badge new">NEW</span>':''}
+            ${isR?'<span class="badge reg">REGISTERED</span>':''}
+            ${e.kind==='manual'?'<span class="badge src">curated</span>':''}
+          </div>
+        </div>
+      </div>
+      <div class="name"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.name)}</a></div>
+      <div class="where">${esc(e.venue||(e.virtual?'Online':''))}</div>
+      ${(e.hosts&&e.hosts.length)||e.calendar?`<div class="host">by ${esc((e.hosts&&e.hosts.filter(Boolean).join(', '))||e.calendar||'')}</div>`:''}
+      ${e.note?`<div class="note">${esc(e.note)}</div>`:''}
+      ${(e.vendors&&e.vendors.length)?`<div class="vtags">${e.vendors.map(v=>`<span class="vtag">${esc(v)}</span>`).join('')}</div>`:''}
+      <div class="actions">
+        <a class="btn rsvp" href="${esc(e.url)}" target="_blank" rel="noopener">View & RSVP ↗</a>
+        <button class="btn regbtn ${isR?'on':''}" onclick="toggleReg('${e.id}')">${isR?'✓ Registered':'Mark registered'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+window.toggleReg=id=>{const R=reg();if(R[id])delete R[id];else R[id]=Date.now();saveReg(R);render();};
+
+document.querySelectorAll('.chip[data-f]').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('.chip[data-f]').forEach(x=>x.classList.remove('on'));
+  c.classList.add('on');FILTER=c.dataset.f;render();
+}));
+document.getElementById('search').addEventListener('input',e=>{QUERY=e.target.value.trim().toLowerCase();render();});
+
+Promise.all([fetch('data/events.json').then(r=>r.json()),fetch('data/meta.json').then(r=>r.json()).catch(()=>({}))])
+.then(([ev,meta])=>{
+  EVENTS=ev;META=meta;
+  const when=meta.refreshed_at?new Date(meta.refreshed_at).toLocaleString('en-SG',{timeZone:'Asia/Singapore',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',hour12:true}):'';
+  document.getElementById('meta').textContent=`${ev.length} upcoming AI events - ${meta.sg_count??''} in Singapore, ${meta.virtual_count??''} virtual · refreshed ${when} SGT`;
+  const vs=[...new Set(ev.flatMap(e=>e.vendors||[]))].sort();
+  const bar=document.getElementById('vendors');
+  bar.innerHTML=vs.map(v=>`<div class="chip vchip" data-v="${esc(v)}">${esc(v)}</div>`).join('');
+  bar.querySelectorAll('.vchip').forEach(c=>c.addEventListener('click',()=>{
+    if(VENDOR===c.dataset.v){VENDOR=null;c.classList.remove('von');}
+    else{VENDOR=c.dataset.v;bar.querySelectorAll('.vchip').forEach(x=>x.classList.remove('von'));c.classList.add('von');}
+    render();
+  }));
+  render();
+}).catch(err=>{document.getElementById('meta').textContent='Failed to load events: '+err});
+</script>
+</body>
+</html>
