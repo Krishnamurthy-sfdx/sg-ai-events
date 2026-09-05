@@ -89,7 +89,7 @@
   "calendar": "The AI Collective",
   "calendar_id": "cal-E74MDlDKBaeAwXK",
   "cover": "https://images.lumacdn.com/uploads/sg/a098549a-b988-4388-8649-9a20c5bf6793.png",
-  "guests": 155,
+  "guests": 162,
   "vendors": [
    "OpenAI"
   ],
@@ -165,7 +165,7 @@
   "calendar": "Claude Community Events",
   "calendar_id": "cal-TOpA5LAFfuDeFpu",
   "cover": "https://images.lumacdn.com/api-uploads/ru/645b4a41-23ee-4bd5-bb80-fafe87ade9d5.png",
-  "guests": 41,
+  "guests": 40,
   "vendors": [
    "Anthropic"
   ],
@@ -382,6 +382,33 @@
   "last_seen": "2026-09-05"
  },
  {
+  "id": "evt-6n2npyaA7ACGxjq",
+  "url": "https://lu.ma/k5ettay4",
+  "name": "Astra Design Night - Building Delightful Interfaces w/ GPT-6 Astra & Mobbin",
+  "start": "2026-09-14T10:00:00.000Z",
+  "end": "2026-09-14T13:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "",
+  "hosts": [
+   "Gabriel Chua",
+   "Lorong AI",
+   "cleon wong"
+  ],
+  "calendar": "Lorong AI",
+  "calendar_id": "cal-6iIeDGNQ7vK8cfx",
+  "cover": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=400,height=400/event-covers/bd/d4cc74b7-3430-4737-bb38-4fb9f74d61c6.png",
+  "guests": 0,
+  "vendors": [
+   "OpenAI"
+  ],
+  "source": "luma-sg-feed",
+  "kind": "luma",
+  "first_seen": "2026-09-05",
+  "last_seen": "2026-09-05"
+ },
+ {
   "id": "evt-cyLhxFNR93SR1t5",
   "url": "https://lu.ma/sznak684",
   "name": "OpenBuilder & MiniMax AI Video night",
@@ -485,6 +512,30 @@
   "credits_kind": "credits"
  },
  {
+  "id": "evt-3IGjMJjBrALKwux",
+  "url": "https://lu.ma/obrb4l8t",
+  "name": "Astra Demo Night",
+  "start": "2026-09-16T10:00:00.000Z",
+  "end": "2026-09-16T13:00:00.000Z",
+  "tz": "Asia/Singapore",
+  "virtual": false,
+  "sg": true,
+  "venue": "Lorong AI @ One-North, 69 Ayer Rajah Cres., Level 3 Vidacity, Singapore 139961",
+  "hosts": [
+   "Gabriel Chua",
+   "Lorong AI"
+  ],
+  "calendar": "Personal",
+  "calendar_id": "cal-EjofbbSct1gpRQ6",
+  "cover": "https://images.lumacdn.com/uploads/of/1a857d6d-55f6-4239-9f66-3928f3a4a4d1.png",
+  "guests": 0,
+  "vendors": [],
+  "source": "luma-sg-feed",
+  "kind": "luma",
+  "first_seen": "2026-09-05",
+  "last_seen": "2026-09-05"
+ },
+ {
   "id": "evt-BVYjZ2Var4kRnbP",
   "url": "https://lu.ma/6wcmwhqz",
   "name": "Bitdeer AI Agentic AI Hands-On Workshop",
@@ -562,7 +613,7 @@
   "vendors": [
    "Anthropic"
   ],
-  "source": "cal:Claude Community Events",
+  "source": "luma-sg-feed+cal:Claude Community Events",
   "kind": "luma",
   "first_seen": "2026-09-05",
   "last_seen": "2026-09-05"
@@ -608,7 +659,7 @@
   "calendar": "Personal",
   "calendar_id": "cal-7xEpna9688PSFwd",
   "cover": "https://images.lumacdn.com/uploads/qb/317d7c81-d315-43c6-bc66-b4335b3e1977.png",
-  "guests": 88,
+  "guests": 94,
   "vendors": [],
   "source": "cal:The AI Capitol / OpenBuilder",
   "kind": "luma",
@@ -661,7 +712,7 @@
   "calendar": "Personal",
   "calendar_id": "cal-7xEpna9688PSFwd",
   "cover": "https://images.lumacdn.com/uploads/z1/fa38e075-458d-4df8-885f-bde759fca9b8.png",
-  "guests": 32,
+  "guests": 34,
   "vendors": [],
   "source": "cal:The AI Capitol / OpenBuilder",
   "kind": "luma",
@@ -685,7 +736,7 @@
   "calendar": "Personal",
   "calendar_id": "cal-7xEpna9688PSFwd",
   "cover": "https://images.lumacdn.com/uploads/67/d83c04fd-551e-4176-8788-a180cf51e90f.png",
-  "guests": 36,
+  "guests": 37,
   "vendors": [],
   "source": "cal:The AI Capitol / OpenBuilder",
   "kind": "luma",
@@ -710,7 +761,7 @@
   "calendar": "Claude SG Community",
   "calendar_id": "cal-Dkjza6RmAxAYMWj",
   "cover": "https://images.lumacdn.com/uploads/7c/9c9d5c1e-573d-457c-b3ff-b9569d08b84a.jpg",
-  "guests": 31,
+  "guests": 34,
   "vendors": [
    "Anthropic"
   ],
@@ -984,7 +1035,7 @@
   "calendar": "Personal",
   "calendar_id": "cal-7xEpna9688PSFwd",
   "cover": "https://images.lumacdn.com/uploads/ja/ffb3f369-c2d1-4c70-92aa-0dc60f1bfcd9.png",
-  "guests": 398,
+  "guests": 400,
   "vendors": [
    "AWS"
   ],
